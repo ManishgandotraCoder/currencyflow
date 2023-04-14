@@ -15,15 +15,6 @@ dotenv.config();
 const port = process.env.PORT || 9000;
 const app = express();
 
-const http = require('http');
-const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const io = require("socket.io")(server, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST"]
-//   }
-// });
 app.use(function (req: any, res: any, next: any) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -48,7 +39,8 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.static('./../../client/build'));
 
 app.get('*', (req: any, res: any, next: any) => {
-  res.sendFile(path.resolve(__dirname, './../../client/build', 'index.html'));
+  res.send("In development")
+  // res.sendFile(path.resolve(__dirname, './../../client/build', 'index.html'));
 });
 
 // server.listen(8000, () => {
