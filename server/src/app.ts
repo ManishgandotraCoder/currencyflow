@@ -36,11 +36,10 @@ app.use(cors())
 app.use('/api', routes);
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(express.static('./../../client/build'));
+app.use(express.static(path.join(__dirname, './../../client/build')));
 
 app.get('*', (req: any, res: any, next: any) => {
-  res.send("In development")
-  // res.sendFile(path.resolve(__dirname, './../../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, './../../client/build', 'index.html'));
 });
 
 // server.listen(8000, () => {
