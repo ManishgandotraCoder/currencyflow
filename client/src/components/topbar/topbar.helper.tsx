@@ -18,6 +18,7 @@ const TopbarComponentHelper = () => {
     };
 
     const handleMenuClose = () => {
+        
         setAnchorEl(null);
         handleMobileMenuClose();
     };
@@ -26,12 +27,14 @@ const TopbarComponentHelper = () => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-    return <ToolbarComponentComponent 
-        isMobileMenuOpen ={isMobileMenuOpen}
-        isMenuOpen ={isMenuOpen}
-        handleMobileMenuClose={handleMobileMenuClose}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-        handleMenuClose={handleMenuClose}
-        handleMobileMenuOpen={handleMobileMenuOpen} />
+    return <ToolbarComponentComponent
+        isMobileMenuOpen={isMobileMenuOpen}
+        isMenuOpen={isMenuOpen}
+        handleMobileMenuClose={()=>handleMobileMenuClose()}
+        handleProfileMenuOpen={(event: React.MouseEvent<HTMLElement>)=>handleProfileMenuOpen(event)}
+        handleMenuClose={()=>handleMenuClose()}
+        anchorEl={anchorEl}
+        mobileMoreAnchorEl={mobileMoreAnchorEl}
+        handleMobileMenuOpen={(event: React.MouseEvent<HTMLElement>)=>handleMobileMenuOpen(event)} />
 }
 export default TopbarComponentHelper;

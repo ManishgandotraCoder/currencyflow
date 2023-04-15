@@ -9,13 +9,15 @@ const router = [
     path: "/",
     element: <CryptoListComponentHelper />,
     exact: true,
-    toolbar: true
+    toolbar: true,
+    key :"crypto"
   },
   {
     path: "/crypto/bitcoin",
     element: <CryptoCoinComponentHelper />,
     exact: true,
-    toolbar: true
+    toolbar: true,
+    key :"coin"
   }
   // {
   //   path: "/crypto",

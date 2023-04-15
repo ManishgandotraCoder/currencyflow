@@ -12,10 +12,12 @@ import {
 import { AccountCircle } from '@mui/icons-material';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import AppIcon from "../../images/main_icon.svg"
+import LogoutIcon from '@mui/icons-material/Logout';
 import "./topbar.scss"
 import * as colors from "../../commonscss/color"
+import { Toolbartype } from './topbar.type';
 const color = colors.default
-export default function TopbarComponentContainer(props: any) {
+export default function TopbarComponentContainer(props: Toolbartype) {
 
 
     const menuId = 'primary-search-account-menu';
@@ -33,10 +35,13 @@ export default function TopbarComponentContainer(props: any) {
                 horizontal: 'right',
             }}
             open={props.isMenuOpen}
-            onClose={props.handleMenuClose}
+            onClose={() => props.handleMenuClose()}
         >
-            <MenuItem onClick={props.handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={props.handleMenuClose}>Logout</MenuItem>
+            <MenuItem onClick={() => props.handleMenuClose()}>
+                <AccountCircle sx={{ color: color.main_color }} />
+                &nbsp;Profile</MenuItem>
+            <MenuItem onClick={() => props.handleMenuClose()}><LogoutIcon sx={{ color: color.main_color }} />
+                &nbsp;Logout</MenuItem>
         </Menu>
     );
 
@@ -55,30 +60,30 @@ export default function TopbarComponentContainer(props: any) {
                 horizontal: 'right',
             }}
             open={props.isMobileMenuOpen}
-            onClose={props.handleMobileMenuClose}
+            onClose={() => props.handleMobileMenuClose()}
         >
 
-            <MenuItem onClick={props.handleMobileMenuClose}>
+            <MenuItem onClick={() => props.handleMobileMenuClose()}>
                 <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle className='icon' />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-            <MenuItem onClick={props.handleMobileMenuClose}>
-                <IconButton
-                    size="large"
+                    size="medium"
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
                     color="inherit"
                 >
                     <AccountCircle sx={{ color: color.main_color }} />
+                </IconButton>
+                <p>Profile</p>
+            </MenuItem>
+            <MenuItem onClick={() => props.handleMobileMenuClose()}>
+                <IconButton
+                    size="medium"
+                    aria-label="account of current user"
+                    aria-controls="primary-search-account-menu"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <LogoutIcon sx={{ color: color.main_color }} />
                 </IconButton>
                 <p>Logout</p>
             </MenuItem>
@@ -110,7 +115,7 @@ export default function TopbarComponentContainer(props: any) {
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={props.handleProfileMenuOpen}
+                            onClick={(event: React.MouseEvent<HTMLElement>) => props.handleProfileMenuOpen(event)}
                             color="inherit"
                         >
                             <AccountCircle sx={{ color: color.main_color }} />
@@ -123,7 +128,7 @@ export default function TopbarComponentContainer(props: any) {
                             aria-label="show more"
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
-                            onClick={props.handleMobileMenuOpen}
+                            onClick={(event: React.MouseEvent<HTMLElement>) => props.handleMobileMenuOpen(event)}
                             color="inherit"
                         >
                             <MoreIcon sx={{ color: color.main_color }} />
