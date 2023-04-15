@@ -16,33 +16,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import "./topbar.scss"
 import * as colors from "../../commonscss/color"
 import { Toolbartype } from './topbar.type';
+import MenuHelperComponent from '../Menu/menu.helper';
 const color = colors.default
 export default function TopbarComponentContainer(props: Toolbartype) {
 
 
     const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={props.anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={props.isMenuOpen}
-            onClose={() => props.handleMenuClose()}
-        >
-            <MenuItem onClick={() => props.handleMenuClose()}>
-                <AccountCircle sx={{ color: color.main_color }} />
-                &nbsp;Profile</MenuItem>
-            <MenuItem onClick={() => props.handleMenuClose()}><LogoutIcon sx={{ color: color.main_color }} />
-                &nbsp;Logout</MenuItem>
-        </Menu>
+    const renderMenu = (<MenuHelperComponent
+        anchorEl={props.anchorEl}
+        menuId={menuId}
+        isMenuOpen={props.isMenuOpen}
+        handleMenuClose ={props.handleMenuClose}/>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';

@@ -1,6 +1,7 @@
 import MenuContainerComponent from "./menu.container"
+import { menutypes } from "./menu.type"
 
-const MenuHelperComponent = ()=> {
-    return <MenuContainerComponent/>
+const MenuHelperComponent = (props: menutypes) => {
+    return <MenuContainerComponent {...props} />
 }
 export default MenuHelperComponent
