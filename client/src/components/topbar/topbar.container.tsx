@@ -16,62 +16,37 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import "./topbar.scss"
 import * as colors from "../../commonscss/color"
 import { Toolbartype } from './topbar.type';
-import MenuHelperComponent from '../Menu/menu.helper';
+import MenuWebHelperComponent from '../MenuWeb/menu.web.helper';
+import MenuMobileHelperComponent from '../MenuMobile/menu.mobile.helper';
+
 const color = colors.default
 export default function TopbarComponentContainer(props: Toolbartype) {
 
 
     const menuId = 'primary-search-account-menu';
-    const renderMenu = (<MenuHelperComponent
+    const renderMenu = (<MenuWebHelperComponent
         anchorEl={props.anchorEl}
         menuId={menuId}
         isMenuOpen={props.isMenuOpen}
-        handleMenuClose ={props.handleMenuClose}/>
+        handleMenuClose={props.handleMenuClose}
+        menuArray={[
+            { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
+            { "key": "Logout", "name": "Logout", icon: <LogoutIcon sx={{ color: color.main_color }} /> }
+        ]}
+    />
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
-        <Menu
-            anchorEl={props.mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={props.isMobileMenuOpen}
-            onClose={() => props.handleMobileMenuClose()}
-        >
-
-            <MenuItem onClick={() => props.handleMobileMenuClose()}>
-                <IconButton
-                    size="medium"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle sx={{ color: color.main_color }} />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-            <MenuItem onClick={() => props.handleMobileMenuClose()}>
-                <IconButton
-                    size="medium"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <LogoutIcon sx={{ color: color.main_color }} />
-                </IconButton>
-                <p>Logout</p>
-            </MenuItem>
-        </Menu>
+        <MenuMobileHelperComponent
+            mobileMoreAnchorEl={props.mobileMoreAnchorEl}
+            isMobileMenuOpen={props.isMobileMenuOpen}
+            handleMobileMenuClose ={props.handleMobileMenuClose}
+            mobileMenuId={mobileMenuId} 
+            menuArray={[
+                { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
+                { "key": "Logout", "name": "Logout", icon: <LogoutIcon sx={{ color: color.main_color }} /> }
+            ]}/>
     );
 
     return (

@@ -2,5 +2,6 @@ export interface menutypes {
     anchorEl:  null | HTMLElement,
     menuId:string,
     isMenuOpen: boolean,
-    handleMenuClose: Function
+    handleMenuClose: Function,
+    menuArray: any
 }

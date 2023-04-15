@@ -2,12 +2,8 @@ import {
     MenuItem,
     Menu
 } from '@mui/material';
-import * as colors from "../../commonscss/color"
-import LogoutIcon from '@mui/icons-material/Logout';
-import { AccountCircle } from '@mui/icons-material';
-import { menutypes } from './menu.type';
+import { menutypes } from './menu.web.type';
 
-const color = colors.default
 const MenuContainerComponent = (props: menutypes) => {
     return <Menu
         anchorEl={props.anchorEl}
@@ -24,11 +20,10 @@ const MenuContainerComponent = (props: menutypes) => {
         open={props.isMenuOpen}
         onClose={() => props.handleMenuClose()}
     >
-        <MenuItem onClick={() => props.handleMenuClose()}>
-            <AccountCircle sx={{ color: color.main_color }} />
-            &nbsp;Profile</MenuItem>
-        <MenuItem onClick={() => props.handleMenuClose()}><LogoutIcon sx={{ color: color.main_color }} />
-            &nbsp;Logout</MenuItem>
+        {props.menuArray.map((item: any) => <MenuItem key ={item.name} onClick={() => props.handleMenuClose()}>
+            {item.icon}
+            &nbsp;{item.name}</MenuItem>)}
+
     </Menu>
 }
 export default MenuContainerComponent
