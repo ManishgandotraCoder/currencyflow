@@ -1,0 +1,57 @@
+@import '../../commonscss/color.scss';
+
+.img {
+  width: 40px;
+}
+
+.dms {
+  color: $dark_chart_color ;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  // margin-top: 25px;
+}
+
+.dropdown_icon {
+  margin-left: 20px;
+  color: $light;
+  font-size: 20px;
+  cursor: pointer;
+
+}
+
+.dropdown_names {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+.icon_text {
+  margin-left: 4px;
+  margin-top: -2.5px;
+  color: $dark_grey;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.icon_text2 {
+  margin-left: 4px;
+  margin-top: -2.5px;
+  color: $dark_grey;
+  cursor: pointer;
+}
+
+.toolbar {
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // z-index: 1000;
+  
+}
+.tool_icon{
+  cursor: pointer;
+  color: $darker;
+}
