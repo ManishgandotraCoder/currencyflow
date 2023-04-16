@@ -26,21 +26,33 @@ const CryptoListComponentContainer = (props: cryptoListType) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.rows
-                        .slice(props.page * props.rowsPerPage, props.page * props.rowsPerPage + props.rowsPerPage)
+                    {props?.rows?.
+                        slice(props.page * props.rowsPerPage, props.page * props.rowsPerPage + props.rowsPerPage)
                         .map((row: any) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                    {props.columns.map((column: any) => {
-                                        const value = row[column.id];
-                                        return (
-                                            <TableCell key={column.id} align={column.align}>
-                                                {column.format && typeof value === 'number'
-                                                    ? column.format(value)
-                                                    : value}
-                                            </TableCell>
-                                        );
-                                    })}
+                                    <TableCell key={"name"} align={"left"}>
+                                        <div style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            flexWrap: 'wrap',
+
+                                        }}>
+                                            <img src={row.image} className="cryptoIcon" />&nbsp;
+                                            <span className='title'>{row.symbol.toUpperCase()}</span>&nbsp;
+                                            <span className='namer'>{row.name}</span>
+
+                                        </div>
+                                    </TableCell>
+                                    <TableCell key={"current_price"} align={'left'}>
+                                        $ {row.current_price}
+                                    </TableCell>
+                                    <TableCell key={"total_volume"} align={'left'}>
+                                        $ {row.total_volume}
+                                    </TableCell>
+                                    <TableCell key={"high_24h"} align={'left'}>
+                                        {row.high_24h.toLocaleString('en-US')}$ - {row.low_24h.toLocaleString('en-US')}$
+                                    </TableCell>
                                 </TableRow>
                             );
                         })}

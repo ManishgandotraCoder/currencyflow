@@ -1,4 +1,4 @@
-// import * as cryptoTypes from "../constants/user.types"
+import * as userTypes from "../constants/user.types"
 
 const initialState = {
     userInformation: {},
@@ -7,10 +7,10 @@ const initialState = {
 const change = (state = initialState, action: any) => {
     switch (action.type) {
 
-        // case cryptoTypes.default.AUTHENTICATE:
-        //     return { userInformation: action.payload.body, loginMessage: action.payload.message };
-        // case "REGISTER":
-        //     return action.payload
+        case userTypes.default.AUTHENTICATE:
+            return { userInformation: action.payload.body, loginMessage: action.payload.message };
+        case userTypes.default.REGISTER:
+            return action.payload
         default: return state;
     }
 }
