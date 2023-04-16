@@ -36,7 +36,7 @@ app.use(cors())
 app.use('/api', routes);
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, './../../client/build')));
+app.use(express.static(path.join(__dirname, './../../client/build2')));
 
 app.get('*', (req: any, res: any, next: any) => {
   res.sendFile(path.join(__dirname, './../../client/build', 'index.html'));
