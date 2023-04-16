@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { cryptoListType } from './CryptoListType';
-
+import "./CryptoList.scss"
 const CryptoListComponentContainer = (props: cryptoListType) => {
-    return <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+    return <Paper className='paper'>
+        <TableContainer >
             <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
