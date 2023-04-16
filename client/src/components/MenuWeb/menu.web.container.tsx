@@ -20,7 +20,7 @@ const MenuContainerComponent = (props: menutypes) => {
         open={props.isMenuOpen}
         onClose={() => props.handleMenuClose()}
     >
-        {props.menuArray.map((item: any) => <MenuItem key ={item.name} onClick={() => props.handleMenuClose()}>
+        {props.menuArray.map((item: any) => <MenuItem key={item.name} onClick={() => props.handleMenuClose()}>
             {item.icon}
             &nbsp;{item.name}</MenuItem>)}
 

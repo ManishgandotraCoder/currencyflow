@@ -22,11 +22,9 @@ import MenuMobileHelperComponent from '../MenuMobile/menu.mobile.helper';
 const color = colors.default
 export default function TopbarComponentContainer(props: Toolbartype) {
 
-
-    const menuId = 'primary-search-account-menu';
     const renderMenu = (<MenuWebHelperComponent
         anchorEl={props.anchorEl}
-        menuId={menuId}
+        menuId={"webmenu"}
         isMenuOpen={props.isMenuOpen}
         handleMenuClose={props.handleMenuClose}
         menuArray={[
@@ -36,17 +34,16 @@ export default function TopbarComponentContainer(props: Toolbartype) {
     />
     );
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
         <MenuMobileHelperComponent
             mobileMoreAnchorEl={props.mobileMoreAnchorEl}
             isMobileMenuOpen={props.isMobileMenuOpen}
-            handleMobileMenuClose ={props.handleMobileMenuClose}
-            mobileMenuId={mobileMenuId} 
+            handleMobileMenuClose={props.handleMobileMenuClose}
+            mobileMenuId={"mobilemenu"}
             menuArray={[
                 { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
                 { "key": "Logout", "name": "Logout", icon: <LogoutIcon sx={{ color: color.main_color }} /> }
-            ]}/>
+            ]} />
     );
 
     return (
@@ -72,7 +69,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
                             size="large"
                             edge="end"
                             aria-label="account of current user"
-                            aria-controls={menuId}
+                            aria-controls={"webmenu"}
                             aria-haspopup="true"
                             onClick={(event: React.MouseEvent<HTMLElement>) => props.handleProfileMenuOpen(event)}
                             color="inherit"
@@ -85,7 +82,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
                         <IconButton
                             size="large"
                             aria-label="show more"
-                            aria-controls={mobileMenuId}
+                            aria-controls={"mobilemenu"}
                             aria-haspopup="true"
                             onClick={(event: React.MouseEvent<HTMLElement>) => props.handleMobileMenuOpen(event)}
                             color="inherit"
