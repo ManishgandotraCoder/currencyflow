@@ -8,7 +8,7 @@ const TopbarComponentHelper = () => {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+    const [islogin , setIslogin]= React.useState(false)
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -16,9 +16,12 @@ const TopbarComponentHelper = () => {
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-
+    const logout = () => {
+        localStorage.clear();
+        window.location.href = "/login"
+    }
     const handleMenuClose = () => {
-        
+
         setAnchorEl(null);
         handleMobileMenuClose();
     };
@@ -30,11 +33,13 @@ const TopbarComponentHelper = () => {
     return <ToolbarComponentComponent
         isMobileMenuOpen={isMobileMenuOpen}
         isMenuOpen={isMenuOpen}
-        handleMobileMenuClose={()=>handleMobileMenuClose()}
-        handleProfileMenuOpen={(event: React.MouseEvent<HTMLElement>)=>handleProfileMenuOpen(event)}
-        handleMenuClose={()=>handleMenuClose()}
+        handleMobileMenuClose={() => handleMobileMenuClose()}
+        handleProfileMenuOpen={(event: React.MouseEvent<HTMLElement>) => handleProfileMenuOpen(event)}
+        handleMenuClose={() => handleMenuClose()}
         anchorEl={anchorEl}
+        islogin={islogin}
+        logout={() => logout()}
         mobileMoreAnchorEl={mobileMoreAnchorEl}
-        handleMobileMenuOpen={(event: React.MouseEvent<HTMLElement>)=>handleMobileMenuOpen(event)} />
+        handleMobileMenuOpen={(event: React.MouseEvent<HTMLElement>) => handleMobileMenuOpen(event)} />
 }
 export default TopbarComponentHelper;

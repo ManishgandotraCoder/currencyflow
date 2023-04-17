@@ -7,4 +7,6 @@ export interface Toolbartype {
     handleProfileMenuOpen: Function,
     handleMobileMenuOpen: Function,
     mobileMoreAnchorEl:  null | HTMLElement,
+    logout: Function,
+    islogin: boolean
 }
