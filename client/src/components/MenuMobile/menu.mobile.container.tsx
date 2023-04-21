@@ -27,10 +27,10 @@ const MenuMobileContainerComponent = (props: menutypes) => {
             horizontal: 'right',
         }}
         open={props.isMobileMenuOpen}
-        onClose={() => props.handleMobileMenuClose()}
+        onClose={() => props.handleMobileMenuClose('')}
     >
         {props.menuArray.map((item: any) =>
-            <MenuItem key ={item.name} onClick={() => props.handleMobileMenuClose()}>
+            <MenuItem key ={item.name} onClick={() => props.handleMobileMenuClose(item.name)}>
                 <IconButton
                     size="medium"
                     aria-label="account of current user"

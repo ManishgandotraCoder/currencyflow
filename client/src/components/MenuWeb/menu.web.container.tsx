@@ -18,9 +18,9 @@ const MenuContainerComponent = (props: menutypes) => {
             horizontal: 'right',
         }}
         open={props.isMenuOpen}
-        onClose={() => props.handleMenuClose()}
+        onClose={() => props.handleMenuClose('')}
     >
-        {props.menuArray.map((item: any) => <MenuItem key={item.name} onClick={() => props.handleMenuClose()}>
+        {props.menuArray.map((item: any) => <MenuItem key={item.name} onClick={() => props.handleMenuClose(item.name)}>
             {item.icon}
             &nbsp;{item.name}</MenuItem>)}
 

@@ -3,5 +3,6 @@ export interface menutypes {
     menuId:string,
     isMenuOpen: boolean,
     handleMenuClose: Function,
-    menuArray: any
+    menuArray: any,
+    islogin: boolean
 }

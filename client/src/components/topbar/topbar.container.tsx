@@ -27,6 +27,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
     const renderMenu = (<MenuWebHelperComponent
         anchorEl={props.anchorEl}
         menuId={"webmenu"}
+        islogin={props.islogin}
         isMenuOpen={props.isMenuOpen}
         handleMenuClose={props.handleMenuClose}
         menuArray={[
@@ -83,7 +84,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
 
                     </Box> || <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-                            <Tooltip title="Click here to login to your account">
+                            <Tooltip title="Click here to login">
 
                                 <IconButton
                                     size="large"
@@ -118,7 +119,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
                                 onClick={(event: React.MouseEvent<HTMLElement>) => navigate('/login')}
                                 color="inherit"
                             >
-                                <Tooltip title="Click here to login to your account">
+                                <Tooltip title="Click here to login">
 
                                     <LoginOutlined sx={{ color: color.main_color }} />
                                 </Tooltip>

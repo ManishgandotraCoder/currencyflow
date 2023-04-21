@@ -1,6 +1,7 @@
 // import Coin from '../pages/crypto-coin/coin';
 import CryptoListComponentHelper from '../pages/CryptoListComponent/CryptoListComponent.Helper';
 import CryptoCoinComponentHelper from '../pages/CryptoCoinComponent/CryptoCoinComponent.Helper';
+import LoginHelperComponent from '../pages/user/login/LoginHelperComponent';
 // import Signup from '../pages/user/signup/signup';
 
 const router = [
@@ -10,15 +11,15 @@ const router = [
     element: <CryptoListComponentHelper />,
     exact: true,
     toolbar: true,
-    key :"crypto"
+    key: "crypto"
   },
   {
     path: "/crypto/bitcoin",
     element: <CryptoCoinComponentHelper />,
     exact: true,
     toolbar: true,
-    key :"coin"
-  }
+    key: "coin"
+  },
   // {
   //   path: "/crypto",
   //   element: <Crypto />,
@@ -29,11 +30,11 @@ const router = [
   //   element: <Coin />,
   //   toolbar: true
   // },
-  // {
-  //   path: "/sign-in",
-  //   element: <Login />,
-  //   toolbar: false
-  // },
+  {
+    path: "/login",
+    element: <LoginHelperComponent />,
+    toolbar: false
+  },
   // {
   //   path: "/sign-up",
   //   element: <Signup />,

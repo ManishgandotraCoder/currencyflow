@@ -3,8 +3,6 @@ import * as cryptoTypes from "../constants/crypto.types"
 
 export const getData = async (currency:string , page :Number , limit : Number) => {
     const response: any = await cryptoApi.getData(currency,page, limit)
-    console.log(response);
-    
     return {
         type: cryptoTypes.default.GET_ALL_CRYPTO,
         payload: response
