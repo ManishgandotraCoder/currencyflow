@@ -8,8 +8,8 @@ export const authenticate = async (email: string, password: string) => {
         payload: response.data
     }
 }
-export const register = async () => {
-    const response: any = await cryptoApi.register()
+export const register = async (email: string, password: string , name :string) => {
+    const response: any = await cryptoApi.register(email, password , name)
     return {
         type: cryptoTypes.default.REGISTER,
         payload: response.data

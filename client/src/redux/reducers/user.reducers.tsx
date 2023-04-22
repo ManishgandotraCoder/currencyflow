@@ -2,15 +2,19 @@ import * as userTypes from "../constants/user.types"
 
 const initialState = {
     userInformation: {},
-    loginMessage: ""
+    loginMessage: "",
+    signupMessage: ''
+
 };
 const change = (state = initialState, action: any) => {
     switch (action.type) {
 
         case userTypes.default.AUTHENTICATE:
-            return { userInformation: action.payload.body, loginMessage: action.payload.message };
+            return { ...state, userInformation: action.payload.body, loginMessage: action.payload.message };
         case userTypes.default.REGISTER:
-            return action.payload
+            console.log(action.payload.body);
+            
+            return { ...state, userInformation: action.payload.body, signupMessage: action.payload.message }
         default: return state;
     }
 }

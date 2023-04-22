@@ -2,6 +2,7 @@
 import CryptoListComponentHelper from '../pages/CryptoListComponent/CryptoListComponent.Helper';
 import CryptoCoinComponentHelper from '../pages/CryptoCoinComponent/CryptoCoinComponent.Helper';
 import LoginHelperComponent from '../pages/user/login/LoginHelperComponent';
+import SignupHelperComponent from '../pages/user/signup/SignupHelperComponent';
 // import Signup from '../pages/user/signup/signup';
 
 const router = [
@@ -35,10 +36,10 @@ const router = [
     element: <LoginHelperComponent />,
     toolbar: false
   },
-  // {
-  //   path: "/sign-up",
-  //   element: <Signup />,
-  //   toolbar: false
-  // }
+  {
+    path: "/register",
+    element: <SignupHelperComponent />,
+    toolbar: false
+  }
 ];
 export default router;
