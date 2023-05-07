@@ -1,5 +1,5 @@
 import { Validator } from 'node-input-validator';
-import {UserModel} from "../models/user.model"
+import { UserModel } from "../models/user.model"
 import { Response, Request, NextFunction } from "express";
 import * as responseHelper from '../helpers/response-helper';
 
@@ -7,24 +7,39 @@ import * as responseHelper from '../helpers/response-helper';
  * Middleware validation class
  */
 
-export class validations  {
-  async isEmailExist(req:Request, res:Response, next :NextFunction) {    
-    let isEmailExist = await UserModel.findOne({ email: req.body.email });
+export class validations {
+  async isEmailExist(req: Request, res: Response, next: NextFunction) {
+    let isEmailExist = await UserModel.findOne({ email: req.body.email.toLowerCase() });
     if (isEmailExist !== null) {
-        responseHelper.helper.error(res, 'User Already Exists', null)
+      responseHelper.helper.error(res, 'User Already Exists', null)
     } else {
       next();
     }
   }
-
-  async loginvalidation(req:Request, res:Response, next :NextFunction) {
+  async isEmailForgotPasswordExist(req: Request, res: Response, next: NextFunction) {
+    let isEmailExist = await UserModel.findOne({ email: req.params.email.toLowerCase() });
+    if (isEmailExist !== null) {
+      next();
+    } else {
+      responseHelper.helper.error(res, 'User Doesnot Exists', null)
+    }
+  }
+  async isEmailValid(req: Request, res: Response, next: NextFunction) {
+    let isEmailExist = await UserModel.findOne({ email: req.body.email.toLowerCase() });
+    if (isEmailExist !== null) {
+      next();
+    } else {
+      responseHelper.helper.error(res, 'User Doesnot Exists', null)
+    }
+  }
+  async loginvalidation(req: Request, res: Response, next: NextFunction) {
     let ruleObj = {
-          email: 'required|email|minLength:7|maxLength:50',
-          password: 'required|minLength:6|maxLength:25'
-        }
-    
+      email: 'required|email|minLength:7|maxLength:50',
+      password: 'required|minLength:6|maxLength:25'
+    }
+
     const v = new Validator(req.body, ruleObj);
-    v.check().then((matched:any) => {
+    v.check().then((matched: any) => {
       var allErr = [];
       if (!matched) {
         for (let er in v.errors) {
@@ -36,14 +51,14 @@ export class validations  {
       }
     });
   }
-  async signupvalidation(req:Request, res:Response, next :NextFunction) {
+  async signupvalidation(req: Request, res: Response, next: NextFunction) {
     let ruleObj = {
-          name: 'required|minLength:2|maxLength:40',
-          email: 'required|email|minLength:7|maxLength:50',
-          password: 'required|minLength:6|maxLength:25'
-        }
+      name: 'required|minLength:2|maxLength:40',
+      email: 'required|email|minLength:7|maxLength:50',
+      password: 'required|minLength:6|maxLength:25'
+    }
     const v = new Validator(req.body, ruleObj);
-    v.check().then((matched:any) => {
+    v.check().then((matched: any) => {
       var allErr = [];
       if (!matched) {
         for (let er in v.errors) {

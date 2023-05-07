@@ -31,7 +31,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
         isMenuOpen={props.isMenuOpen}
         handleMenuClose={props.handleMenuClose}
         menuArray={[
-            { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
+            // { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
             { "key": "Logout", "name": "Logout", icon: <LogoutIcon sx={{ color: color.main_color }} /> }
         ]}
     />
@@ -45,7 +45,7 @@ export default function TopbarComponentContainer(props: Toolbartype) {
             islogin={props.islogin}
             mobileMenuId={"mobilemenu"}
             menuArray={[
-                { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
+                // { "key": "Profile", "name": "Profile", icon: <AccountCircle sx={{ color: color.main_color }} /> },
                 { "key": "Logout", "name": "Logout", icon: <LogoutIcon sx={{ color: color.main_color }} /> }
             ]} />
     );

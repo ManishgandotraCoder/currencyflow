@@ -7,14 +7,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { LoginInterface } from './Login.type';
+import { ForgotPasswordInterface } from './ForgotPassword.type';
 import { CircularProgress, Link } from '@mui/material';
-import "./Login.scss"
+import "./ForgotPassword.scss"
 import AppIcon from "../../../images/main_icon.svg"
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
-export default function LoginContainerComponent(props: LoginInterface) {
+export default function ForgotPasswordContainerComponent(props: ForgotPasswordInterface) {
 
     return (
         <ThemeProvider theme={theme}>
@@ -46,7 +47,8 @@ export default function LoginContainerComponent(props: LoginInterface) {
                         <Typography component="h1" variant="h5">
                             Forgot Password
                         </Typography>
-                        <Box component="form" noValidate onSubmit={(e) => props.handleSubmit(e)} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={(e) => props.handleSubmit(e, props.sucessMessage)} sx={{ mt: 1 }}>
+                            <>Please enter your email address.</>
                             <TextField
                                 margin="normal"
                                 required
@@ -58,41 +60,46 @@ export default function LoginContainerComponent(props: LoginInterface) {
                                 autoComplete="email"
                                 autoFocus
                             />
-                            <TextField
+                            {props.sucessMessage === "OTP sent successfully, Please check your email" && <TextField
                                 margin="normal"
                                 required
-                                fullWidth
                                 size='small'
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-
-                            <Button
-                                type="submit"
                                 fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                Sign In
-                            </Button>
+                                id="otp"
+                                label="OTP"
+                                name="otp"
+                                autoComplete="otp"
+                                autoFocus
+                            /> || ''}
+
+                            {props.sucessMessage === "OTP sent successfully, Please check your email" &&
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Verify OTP
+                                </Button> || <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Continue
+                                </Button>}
+
 
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#/forgot-password" variant="body2">
-                                        Forgot password?
+                                    <Link href="#/login" variant="body2">
+                                        Back to Login
                                     </Link>
                                 </Grid>
-                                <Grid item>
-                                    <Link href="#/register" variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                            {props.loader && <CircularProgress className='progress' color="inherit" /> || ""}
 
+                            </Grid>
+                            {props.sucessMessage}
+                            {props.loader && <CircularProgress className='progress' color="inherit" /> || ""}
                         </Box>
                     </Box>
 

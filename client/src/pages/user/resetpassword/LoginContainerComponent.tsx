@@ -11,11 +11,13 @@ import { LoginInterface } from './Login.type';
 import { CircularProgress, Link } from '@mui/material';
 import "./Login.scss"
 import AppIcon from "../../../images/main_icon.svg"
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function LoginContainerComponent(props: LoginInterface) {
 
+    const navigate = useNavigate()
     return (
         <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
@@ -44,7 +46,7 @@ export default function LoginContainerComponent(props: LoginInterface) {
                     >
                         <img className="main_icon" src={AppIcon} />
                         <Typography component="h1" variant="h5">
-                            Forgot Password
+                            Sign in
                         </Typography>
                         <Box component="form" noValidate onSubmit={(e) => props.handleSubmit(e)} sx={{ mt: 1 }}>
                             <TextField
@@ -78,10 +80,11 @@ export default function LoginContainerComponent(props: LoginInterface) {
                             >
                                 Sign In
                             </Button>
+                            {props.loader && <CircularProgress className='progress' color="inherit" /> || ""}
 
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#/forgot-password" variant="body2">
+                                    <Link href="#forgot-password" variant="body2">
                                         Forgot password?
                                     </Link>
                                 </Grid>
@@ -91,8 +94,6 @@ export default function LoginContainerComponent(props: LoginInterface) {
                                     </Link>
                                 </Grid>
                             </Grid>
-                            {props.loader && <CircularProgress className='progress' color="inherit" /> || ""}
-
                         </Box>
                     </Box>
 

@@ -3,6 +3,7 @@ import CryptoListComponentHelper from '../pages/CryptoListComponent/CryptoListCo
 import CryptoCoinComponentHelper from '../pages/CryptoCoinComponent/CryptoCoinComponent.Helper';
 import LoginHelperComponent from '../pages/user/login/LoginHelperComponent';
 import SignupHelperComponent from '../pages/user/signup/SignupHelperComponent';
+import ForgotPasswordHelperComponent from '../pages/user/forgotpassword/ForgotPasswordHelperComponent';
 // import Signup from '../pages/user/signup/signup';
 
 const router = [
@@ -39,6 +40,11 @@ const router = [
   {
     path: "/register",
     element: <SignupHelperComponent />,
+    toolbar: false
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPasswordHelperComponent />,
     toolbar: false
   }
 ];

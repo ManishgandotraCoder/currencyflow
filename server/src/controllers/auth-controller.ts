@@ -5,7 +5,7 @@ import * as express from "express";
 import { msg } from "../helpers/messages"
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
-
+import smtpTransport from 'nodemailer-smtp-transport';
 import * as dotenv from "dotenv";
 import mongoose from 'mongoose';
 
@@ -15,8 +15,8 @@ dotenv.config();
 export class AuthController {
   async login(req: Request, res: express.Response, next: NextFunction) {
     try {
-
-      UserModel.find({ email: req.body.email, password: req.body.password }).select('_id , name , email').then(
+      const { email, password } = req.body
+      UserModel.find({ email: email.toLowerCase(), password: password }).select('_id , name , email').then(
         async (data: any) => {
           if (data.length === 1 && data[0]._id) {
             var token = await jwt.sign({ _id: data[0]._id, email: data[0].email }, process.env.JWT_TOKEN + '');
@@ -41,7 +41,7 @@ export class AuthController {
     try {
       const user = new UserModel({
         name: name,
-        email: email,
+        email: email.toLowerCase(),
         password: password
       });
       user.save().then((userinfo: any) => {
@@ -78,28 +78,49 @@ export class AuthController {
     }
   }
   async forgotpassword(req: Request, res: Response, next: NextFunction) {
-    // email token
-    let testAccount = await nodemailer.createTestAccount();
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
+
+    const receiver = "manishgandotra@icloud.com"
+    const otp = Math.floor(100000 + Math.random() * 900000)
+    var transporter = nodemailer.createTransport(smtpTransport({
+      service: 'gmail',
+      host: 'smtp.gmail.com',
       auth: {
-        user: testAccount.user, // generated ethereal user
-        pass: testAccount.pass, // generated ethereal password
-      },
-    });
-    let info = await transporter.sendMail({
-      from: '"Manish gandotra" Manishgandotra74@gmail.com', // sender address
-      to: "Manishgandotra74@gmail.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
-      html: "<b>Hello world?</b>", // html body
-    });
-    res.send(JSON.stringify(info))
+        user: 'currencyflowspeed@gmail.com',
+        pass: 'ktrsiubmeyasumvc'
+      }
+    }));
+
+    var mailOptions = {
+      from: 'currencyflowspeed@gmail.com',
+      to: receiver,
+      subject: 'Forgot password for Currency Flow',
+      text: `Please enter ${otp} to verify your email`
+    };
+    const filter = { email: receiver };
+    const update = { otp: otp };
+    await UserModel.findOneAndUpdate(filter, update)
+
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //   if (error) {
+        // helper.error(res, msg.SERVER_ERROR, null)
+      // } else {
+        helper.success(res, msg.OTP_GENERATED, null)
+      // }
+    // });
+
   }
-  // async resetChangepassword(req: Request, res: Response, next: NextFunction) {
+  async verifyOTP(req: Request, res: Response, next: NextFunction) {
+    try {
+      UserModel.find({ ...req.body }).then((user: any) => {
+        if (user.length > 0) {
+          helper.success(res, msg.RECORD_FETCHED_SUCCESSFULLY, user)
+        } else {
+          helper.error(res, msg.NO_RECORD, user)
+        }
+      })
 
-  // }
+    } catch (e) {
+      helper.server_error(res, msg.SERVER_ERROR, null)
+    }
+  }
 }
-

@@ -8,7 +8,12 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { cryptoListType } from './CryptoListType';
 import "./CryptoList.scss"
+import { useNavigate } from 'react-router-dom';
 const CryptoListComponentContainer = (props: cryptoListType) => {
+    const navigate = useNavigate()
+    const handleCellClick = (e: any) => {
+        navigate(`crypto/${e}`);
+    }
     return <Paper className='paper'>
         <TableContainer >
             <Table stickyHeader aria-label="sticky table">
@@ -30,8 +35,8 @@ const CryptoListComponentContainer = (props: cryptoListType) => {
                         slice(props.page * props.rowsPerPage, props.page * props.rowsPerPage + props.rowsPerPage)
                         .map((row: any) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                                    <TableCell key={"name"} align={"left"}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={()=>handleCellClick(row.name)}>
+                                    <TableCell key={"name"} align={"left"} >
                                         <div style={{
                                             display: 'flex',
                                             alignItems: 'center',

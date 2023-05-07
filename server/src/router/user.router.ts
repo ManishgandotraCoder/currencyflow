@@ -18,5 +18,10 @@ userrouter.get('/getUsers/:_id',
     controller.auth.getusers
 )
 userrouter.get('/forgotPassword/:email',
+    middleware.data.rules.isEmailForgotPasswordExist,
     controller.auth.forgotpassword
+)
+userrouter.post('/verifyOTP/',
+    middleware.data.rules.isEmailValid,
+    controller.auth.verifyOTP
 )

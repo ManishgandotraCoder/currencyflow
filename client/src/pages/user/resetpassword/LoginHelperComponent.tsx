@@ -18,6 +18,7 @@ const LoginHelperComponent = () => {
         dispatch(await userActions.authenticate(emailID, password))
         setLoader(false)
     };
+    console.log(userInfo);
     
     React.useEffect(() => {
         if (userInfo.loginMessage === "User login successfully") {

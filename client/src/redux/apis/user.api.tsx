@@ -28,4 +28,25 @@ function register(email: string, password: string, name: string) {
         });
 
 }
-export { authenticate, register }
+function forgotpassword(email: string) {
+    return axios.get(`${base_url}forgotPassword/${email}`)
+        .then(response => {
+            return resp(response?.data, response.status, "success_message");
+        })
+        .catch(error => {
+            return resp([], error.response?.status, error.response?.statusText);
+        });
+
+}
+function verifyOTP(email: string, otp: number) {
+    return axios.post(`${base_url}verifyOTP/`,
+        { "email": email, "otp": otp })
+        .then(response => {
+            return resp(response?.data, response.status, "success_message");
+        })
+        .catch(error => {
+            return resp([], error.response?.status, error.response?.statusText);
+        });
+
+}
+export { authenticate, register, forgotpassword, verifyOTP }
